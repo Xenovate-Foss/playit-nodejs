@@ -1,0 +1,13 @@
+{
+  "name": "playit",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [],
+  "author": "Xenovate",
+  "license": "MIT"
+}
