@@ -1,5 +1,8 @@
 # PlayIt Module Documentation
 
+[![Node.js CI](https://github.com/Xenovate-Foss/playit-nodejs/actions/workflows/node.js.yml/badge.svg)](https://github.com/Xenovate-Foss/playit-nodejs/actions/workflows/node.js.yml)
+[![Deno CI](https://github.com/Xenovate-Foss/playit-nodejs/actions/workflows/deno.yml/badge.svg)](https://github.com/Xenovate-Foss/playit-nodejs/actions/workflows/deno.yml)
+
 The PlayIt module provides a convenient way to interact with the playit-cli tool using a modern JavaScript API. This module allows you to manage tunnels programmatically with event-based feedback.
 
 ## Installation
