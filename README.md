@@ -4,14 +4,14 @@ The PlayIt module provides a convenient way to interact with the playit-cli tool
 
 ## Installation
 
-1. Save the module file to your project directory (e.g., as `v3.js`)
+1. Save the module file to your project directory (e.g., as `v4.js`)
 2. Make sure you have the `playit-cli` command line tool already installed
 
 ## Basic Usage
 ### Importing the Module
 
 ```javascript
-import PlayItClient from './v3.js';
+import PlayItClient from './v4.js';
 ```
 
 ### Creating a Client Instance
@@ -85,7 +85,7 @@ The PlayItClient emits the following events:
 ## Complete Example
 
 ```javascript
-import PlayItClient from './v3.js';
+import PlayItClient from './v4.js';
 
 const playit = new PlayItClient();
 
@@ -129,13 +129,13 @@ playit.login();
 The module can still be used as a command line tool for backward compatibility:
 
 ```bash
-node v3 --login    # Start login process
-node v3 --start    # Start the agent
-node v3 --list     # List all tunnels
-node v3 --reset    # Reset configuration
-node v3 --secret-path  # Show secret path
-node v3 --version  # Show version
-node v3 --help     # Show help information
+node v4 --login    # Start login process
+node v4 --start    # Start the agent
+node v4 --list     # List all tunnels
+node v4 --reset    # Reset configuration
+node v4 --secret-path  # Show secret path
+node v4 --version  # Show version
+node v4 --help     # Show help information
 ```
 
 ## Configuration
@@ -150,7 +150,7 @@ You can integrate this module with a web server to create a web interface for ma
 
 ```javascript
 import express from 'express';
-import PlayItClient from './v3.js';
+import PlayItClient from './v4.js';
 
 const app = express();
 const playit = new PlayItClient();
@@ -185,7 +185,7 @@ playit.listTunnels();
 You can implement an auto-reconnect feature:
 
 ```javascript
-import PlayItClient from './v3.js';
+import PlayItClient from './v4.js';
 
 const playit = new PlayItClient();
 let reconnectTimer = null;
