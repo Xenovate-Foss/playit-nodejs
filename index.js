@@ -1,4 +1,4 @@
-import PlayItClient from './v3.js';
+import PlayItClient from './v4.js';
 
 const playit = new PlayItClient();
 
