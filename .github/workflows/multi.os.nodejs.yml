@@ -1,0 +1,69 @@
+name: NodeJS Multi-OS Test
+
+on:
+  schedule:
+    # At 09:00 on Saturday
+    - cron: "0 9 * * 6"
+  # Allow manual triggering
+  workflow_dispatch:
+  # Optional: Run on push to main branch
+  push:
+    branches: [ main, master ]
+  # Optional: Run on pull requests
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test_nodejs:
+    name: Test on ${{ matrix.os }}
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu_focal
+          - ubuntu_jammy
+          - debian_buster
+          - debian_bullseye
+          - debian_bookworm
+          - rockylinux_8
+          - rockylinux_9
+          - almalinux_8
+          - almalinux_9
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Vagrant
+        run: |
+          brew install vagrant
+          brew install virtualbox
+
+      - name: Cache Vagrant boxes
+        uses: actions/cache@v3
+        with:
+          path: ~/.vagrant.d/boxes
+          key: ${{ runner.os }}-vagrant-${{ matrix.os }}-${{ hashFiles('Vagrantfile') }}
+          restore-keys: |
+            ${{ runner.os }}-vagrant-${{ matrix.os }}
+
+      - name: Show Vagrant version
+        run: vagrant --version
+
+      - name: Run vagrant up
+        run: vagrant up ${{ matrix.os }}
+        timeout-minutes: 15
+
+      - name: Copy project to VM
+        run: vagrant ssh ${{ matrix.os }} -c "cp -r /vagrant_data/* /app/"
+
+      - name: Install dependencies
+        run: vagrant ssh ${{ matrix.os }} -c "cd /app && npm install"
+
+      - name: Run tests
+        run: vagrant ssh ${{ matrix.os }} -c "cd /app && npm test"
+
+      - name: Cleanup
+        if: always()
+        run: vagrant destroy -f ${{ matrix.os }}
