@@ -634,5 +634,3 @@ export async function example() {
   
   return result.path;
 }
-
-example()
